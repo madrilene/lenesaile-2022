@@ -51,7 +51,7 @@ layout: base
       <a
         class="button"
         href="{{ project.data.clientURL }}"
-        >{{ project.data.clientURL | replace("https://www.", "") }}</a
+        >{{ project.data.clientURL | replace("https://www.", "") | replace("https://", "") }}</a
       >
     </div>
   </article>

@@ -4,7 +4,7 @@ description: 'Eleventy lets you create a file called eleventy.js to configure th
 category: blogpost
 key: 'eleventyconfig'
 date: 2022-11-29
-lastEdit: 2023-11-23 11:10:00
+lastEdit: 2024-06-03 10:30:00
 redirectFrom: ['/en/blog/structuring-the-eleventyjs-config-file/']
 youtube: true
 ---
@@ -247,7 +247,52 @@ module.exports = eleventyConfig => {
 
 **Excellent!**
 
-Next up: [Passthrough File Copy](https://www.11ty.dev/docs/copy/).
+### Update June 2024
+
+With the latest iteration of my Eleventy starter, I now keep the config inside the src directory: `src/_config`.
+Keep in mind that I am using **ESM syntax instead of CommonJS**, as Eleventy 3.0 now supports it.
+
+````js
+
+Each configuration category (filters, plugins, shortcodes, etc.) is modularized. or example, `dates.js` within the `filters` folder contains date-related filters.
+
+```js
+import dayjs from 'dayjs';
+
+export const toISOString = dateString => dayjs(dateString).toISOString();
+export const formatDate = (date, format) => dayjs(date).format(format);
+````
+
+These individual modules are then imported and consolidated in a central `filters.js` file, which exports all the filters as a single default object:
+
+```js
+import {toISOString, formatDate} from './filters/dates.js';
+// more imports
+
+export default {
+  toISOString,
+  formatDate
+  // more exports
+};
+```
+
+In `eleventy.config.js`, these modules are then imported:
+
+```js
+import filters from './src/_config/filters.js';
+import shortcodes from './src/_config/shortcodes.js';
+```
+
+Now I use them to register filters and shortcodes with Eleventy, using this nice concise syntax:
+
+```js
+eleventyConfig.addFilter('toIsoString', filters.toISOString);
+eleventyConfig.addFilter('formatDate', filters.formatDate);
+// More filters...
+eleventyConfig.addShortcode('svg', shortcodes.svgShortcode);
+```
+
+**Next up: [Passthrough File Copy](https://www.11ty.dev/docs/copy/).**
 
 ## Structuring your Passthrough File Copies
 

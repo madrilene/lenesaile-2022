@@ -6,7 +6,7 @@
   & > :is(.moon, .sun) {
     fill: var(--icon-fill);
 
-    @nest .theme-toggle:is(:hover, :focus-visible) > & {
+    .theme-toggle:is(:hover, :focus-visible) > & {
       fill: var(--icon-fill-hover);
     }
   }
@@ -15,12 +15,12 @@
     stroke: var(--icon-fill);
     stroke-width: 2px;
 
-    @nest .theme-toggle:is(:hover, :focus-visible) & {
+    .theme-toggle:is(:hover, :focus-visible) & {
       stroke: var(--icon-fill-hover);
     }
   }
 
-  @nest [data-theme='dark'] & {
+  [data-theme='dark'] & {
     & > .sun {
       transform: scale(1.75);
     }
@@ -45,7 +45,8 @@
     }
 
     & > .sun-beams {
-      transition: transform 0.5s cubic-bezier(0.5, 1.5, 0.75, 1.25),
+      transition:
+        transform 0.5s cubic-bezier(0.5, 1.5, 0.75, 1.25),
         opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
     }
 
@@ -57,7 +58,7 @@
       }
     }
 
-    @nest [data-theme='dark'] & {
+    [data-theme='dark'] & {
       & > .sun {
         transform: scale(1.75);
         transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
@@ -103,7 +104,7 @@
     stroke-linecap: round;
   }
 
-  @nest [data-theme='dark'] & {
+  [data-theme='dark'] & {
     --icon-fill: var(--nav-list-color, var(--color-light));
     --icon-fill-hover: var(--nav-list-color, var(--color-light));
   }
@@ -120,11 +121,12 @@
     }
 
     & > .sun-beams {
-      transition: transform 0.5s cubic-bezier(0.5, 1.5, 0.75, 1.25),
+      transition:
+        transform 0.5s cubic-bezier(0.5, 1.5, 0.75, 1.25),
         opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
     }
 
-    @nest [data-theme='dark'] & {
+    [data-theme='dark'] & {
       & > .sun {
         transform: scale(1.75);
         transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);

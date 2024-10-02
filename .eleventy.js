@@ -68,18 +68,15 @@ const {
 
 // plugins
 const markdownLib = require('./config/plugins/markdown.js');
-const {EleventyRenderPlugin} = require('@11ty/eleventy');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const {slugifyString} = require('./config/utils');
 const {escape} = require('lodash');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
-const {EleventyI18nPlugin} = require('@11ty/eleventy');
-const bundlerPlugin = require('@11ty/eleventy-plugin-bundle');
 
 // module import events
 const {afterBuild} = require('./config/events/index.js');
 
-module.exports = eleventyConfig => {
+module.exports = async function (eleventyConfig) {
   // Tell 11ty to use the .eleventyignore and ignore our .gitignore file
   eleventyConfig.setUseGitIgnore(false);
 
@@ -164,6 +161,9 @@ module.exports = eleventyConfig => {
   eleventyConfig.addPlugin(require('./config/template-formats/js-config.js'));
 
   // 	--------------------- Plugins ---------------------
+
+  const {EleventyRenderPlugin, EleventyI18nPlugin} = await import('@11ty/eleventy');
+
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.setLibrary('md', markdownLib);
@@ -172,7 +172,6 @@ module.exports = eleventyConfig => {
     defaultLanguage: 'en',
     errorMode: 'allow-fallback'
   });
-  eleventyConfig.addPlugin(bundlerPlugin);
 
   // 	--------------------- Passthrough copies ---------------------
 

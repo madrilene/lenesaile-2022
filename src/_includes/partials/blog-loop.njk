@@ -4,7 +4,7 @@
   <span> Quick note</span>
   {% set definedDate = post.date %} {% include "partials/date.njk" %}
 
-  {{ post.data.content | safe }}
+  {{ post.content | safe }}
 </li>
 
 {% else %}

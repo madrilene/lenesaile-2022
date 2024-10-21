@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s-m);
-  --region-space-top: var(--space-2xl);
+  --region-space-top: var(--space-3xl);
 }
 
 .projects:last-child {
@@ -63,7 +63,6 @@
 }
 
 .projects .details ul {
-  font-size: var(--size-step-0);
   list-style: none;
   padding: 0;
 }
@@ -71,10 +70,12 @@
 .projects .details {
   position: absolute;
   inset-block-end: 0;
-  background-color: var(--color-bg-card);
-  color: var(--color-light);
-  padding: 0 var(--space-m-l);
+  font-size: var(--size-step-code);
+  background-color: var(--color-bg);
+  border: 3px solid var(--color-text);
+  color: var(--color-text);
+  padding: 0 var(--space-xs);
   border-radius: var(--border-radius);
   max-inline-size: unset;
-  transform: translateX(-2rem) translateY(var(--space-xs-s));
+  transform: translateX(-1.5rem) translateY(var(--space-xs-s)) rotate(-2deg);
 }

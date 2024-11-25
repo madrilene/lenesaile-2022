@@ -10,6 +10,11 @@
     "icon": "mastodon.svg"
   },
   {
+    "platform": "bluesky",
+    "url": "https://bsky.app/profile/lenesaile.com",
+    "icon": "bluesky.svg"
+  },
+  {
     "platform": "ko-fi",
     "url": "https://ko-fi.com/lenesaile",
     "icon": "kofi.svg"
